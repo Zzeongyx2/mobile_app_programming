@@ -18,20 +18,19 @@ public class SignUpActivity extends Activity {
     private String id;
     private String name;
     private String password;
-
+    UserDBOpenHelper helper = new UserDBOpenHelper(this);
+    SQLiteDatabase database;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        final UserDBOpenHelper db = new UserDBOpenHelper(this);
-        //SQLiteDatabase database;
 
         SignUp = (Button) findViewById(R.id.submit);
         NAME = (EditText)findViewById(R.id.name_form);
         ID= (EditText)findViewById(R.id.id_form);
         PW= (EditText)findViewById(R.id.password_form);
 
-       // database = db.getWritableDatabase();
+       database = helper.getWritableDatabase();
 
         SignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,8 +44,8 @@ public class SignUpActivity extends Activity {
                     myToast.show();
                 }else{
                     CurUser =new User(id,password,name);
-                    db.addUser(CurUser);
-                    Intent intent = new Intent(getApplicationContext(), QuestionActivity.class);//다음페이지
+                    helper.insertUser(CurUser);
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);//다음페이지
                     startActivity(intent);
                 }
             }

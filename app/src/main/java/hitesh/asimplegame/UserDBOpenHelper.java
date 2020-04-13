@@ -46,17 +46,18 @@ public class UserDBOpenHelper extends SQLiteOpenHelper {
         // Create tables again
         onCreate(db);
     }
-    public void addUser(User user){
+    public void insertUser(User user){
         ContentValues values = new ContentValues();
+        values.put(ID,user.getID());
         values.put(NAME,user.getNAME());
         values.put(PASSWORD,user.getPW());
-        values.put(ID,user.getPW());
+
         database.insert(TABLE_USER, null,values);
     }
     public void addScore(User user, int score){
         ContentValues values = new ContentValues();
         values.put(SCORE,score);
-        values.put(ID,user.getPW());
+        values.put(ID,user.getID());
         database.insert(TABLE_SCORE, null,values);
     }
     public User getUser(String ID){//ID에 해당되는 유저의 스코어를 포함한 모든 정보를 가져온다
