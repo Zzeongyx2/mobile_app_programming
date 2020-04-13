@@ -27,7 +27,7 @@ public class UserDBOpenHelper extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase db) {//TABLE_USER(ID(PRI),PW,NAME); TABLE_SCORE(ID(PRI),SCORE)
-        database = db;
+        database = db; //나중에 수정
         String sql_user = "CREATE TABLE IF NOT EXISTS " + TABLE_USER+ " ( "
                 + ID + " TEXT PRIMARY KEY, " + NAME + " TEXT, "
                 + PASSWORD + " TEXT)";
@@ -80,7 +80,7 @@ public class UserDBOpenHelper extends SQLiteOpenHelper {
         cursor.close();
         return user;
     }
-    //DB열고 닫기 메모리 누수 방지 close 하지 않아도 된다는
+    //DB열고 닫기 메모리 누수 방지를 위해 close 하지 않아도 된다
 
     public static String getTableUser() {
         return TABLE_USER;
