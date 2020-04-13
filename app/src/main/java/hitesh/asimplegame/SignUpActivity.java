@@ -2,6 +2,7 @@ package hitesh.asimplegame;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,11 +24,14 @@ public class SignUpActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         final UserDBOpenHelper db = new UserDBOpenHelper(this);
+        //SQLiteDatabase database;
 
         SignUp = (Button) findViewById(R.id.submit);
         NAME = (EditText)findViewById(R.id.name_form);
         ID= (EditText)findViewById(R.id.id_form);
         PW= (EditText)findViewById(R.id.password_form);
+
+       // database = db.getWritableDatabase();
 
         SignUp.setOnClickListener(new View.OnClickListener() {
             @Override

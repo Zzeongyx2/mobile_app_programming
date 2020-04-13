@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class LoginActivity extends Activity {
-    private UserDBOpenHelper helper;
+    private UserDBOpenHelper helper = new UserDBOpenHelper(this);
     private SQLiteDatabase database;
     Button SIGNUP;
     Button LOGIN;
@@ -33,6 +33,7 @@ public class LoginActivity extends Activity {
         ID= (EditText)findViewById(R.id.username);
         PW= (EditText)findViewById(R.id.password);
 
+        database = helper.getWritableDatabase();
         SIGNUP.setEnabled(true);
         LOGIN.setEnabled(true);
         SIGNUP.setOnClickListener(new View.OnClickListener() {
@@ -54,7 +55,8 @@ public class LoginActivity extends Activity {
                     myToast.show();
                     return;
                 }
-                sql ="SELECT name FROM"+helper.getTableUser()+"WHERE id = "+id+" AND password = "+pw;//sql 작성
+                sql ="SELECT name FROM "+helper.getTableUser()+" WHERE id = "+id+" AND password = "+pw;//sql 작성
+                cursor = database.rawQuery(sql,null);
                 if(cursor.getCount()!=1){//검색 된 결과가 없을 시
                     Toast myToast = Toast.makeText(getApplicationContext(), R.string.NOT_MATCH_MESSAGE,Toast.LENGTH_SHORT); //없다는 메세지
                     myToast.show();
