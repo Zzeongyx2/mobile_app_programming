@@ -19,7 +19,7 @@ public class SignUpActivity extends Activity {
     private String name;
     private String password;
     UserDBOpenHelper helper = new UserDBOpenHelper(this);
-    SQLiteDatabase database;
+    //SQLiteDatabase database;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +30,7 @@ public class SignUpActivity extends Activity {
         ID= (EditText)findViewById(R.id.id_form);
         PW= (EditText)findViewById(R.id.password_form);
 
-       database = helper.getWritableDatabase();
+       //database = helper.getWritableDatabase();
 
         SignUp.setOnClickListener(new View.OnClickListener() {
             @Override

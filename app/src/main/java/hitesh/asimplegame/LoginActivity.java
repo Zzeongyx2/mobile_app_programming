@@ -62,10 +62,10 @@ public class LoginActivity extends Activity {
                     myToast.show();
                     return;
                 }else{//검색된 메세지가 있을 시
-                    Toast myToast = Toast.makeText(getApplicationContext(), R.string.SUCCESS_MESSAGE,Toast.LENGTH_SHORT);
+                    Toast myToast = Toast.makeText(getApplicationContext(), R.string.welcome_message,Toast.LENGTH_SHORT);
                     myToast.show();
 
-                    Intent intent = new Intent(getApplicationContext(),QuestionActivity.class);//다음 인텐트 시작
+                    Intent intent = new Intent(getApplicationContext(),SelectQuestion.class);//다음 인텐트 시작
                     startActivity(intent);
                 }
             }
