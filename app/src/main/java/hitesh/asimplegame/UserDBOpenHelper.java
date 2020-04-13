@@ -5,6 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import static java.sql.DriverManager.println;
 
 public class UserDBOpenHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
@@ -68,22 +71,20 @@ public class UserDBOpenHelper extends SQLiteOpenHelper {
             user.setID(cursor.getString(0));
             user.setNAME(cursor.getString(1));
             user.setPW(cursor.getString(2));
+            println(cursor.getString(0));
             do {
                 user.ScoreUP(cursor.getInt(3));//score만 지속적으로 가져오기
             } while (cursor.moveToNext());
         }
+        cursor.close();
         return user;
     }
-    public Boolean isUser(String id,String pw){
-        String checkQuery ="SELECT"+PASSWORD+"FROM"+TABLE_USER+"WHERE "+ID+"="+id;
-        if(checkQuery==pw) return true;
-        else return false;
-    }
-    //DB열고 닫기 메모리 누수 방지
-    public void openDB(){
+    //DB열고 닫기 메모리 누수 방지 close 하지 않아도 된다는
 
+    public static String getTableUser() {
+        return TABLE_USER;
     }
-    public void closeDB(){
-
+    public String getTableScore(){
+        return TABLE_SCORE;
     }
 }

@@ -10,6 +10,7 @@
     <string name="prompt_password">PASSWORD</string>
     <string name="welcome_message">WELCOME!</string>
     <string name="action_submit">SUBMIT</string>
+    <string name="SUCCESS_MESSAGE">빈칸을 채워 모두 주세요</string>
     <string name="NULL_MESSAGE">빈칸을 채워 모두 주세요</string>
     <string name="NOT_MATCH_MESSAGE">아이디 또는 패스워드가 올바르지 않습니다.</string>
 </resources>

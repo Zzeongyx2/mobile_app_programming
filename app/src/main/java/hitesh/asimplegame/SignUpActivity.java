@@ -42,7 +42,7 @@ public class SignUpActivity extends Activity {
                 }else{
                     CurUser =new User(id,password,name);
                     db.addUser(CurUser);
-                   Intent intent = new Intent(getApplicationContext(), QuestionActivity.class);//다음페이지
+                    Intent intent = new Intent(getApplicationContext(), QuestionActivity.class);//다음페이지
                     startActivity(intent);
                 }
             }
