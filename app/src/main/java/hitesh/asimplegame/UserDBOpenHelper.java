@@ -60,6 +60,13 @@ public class UserDBOpenHelper extends SQLiteOpenHelper {
         values.put(ID,user.getID());
         database.insert(TABLE_SCORE, null,values);
     }
+    public boolean isUser(String id){
+        String sql ="SELECT "+ID+" FROM "+TABLE_USER+" WHERE "+ID+" = "+id;
+        Cursor cursor = database.rawQuery(sql,null);
+        if(cursor.getCount()!=0) return true;
+        return false;
+    }
+
     public User getUser(String ID){//ID에 해당되는 유저의 스코어를 포함한 모든 정보를 가져온다
         User user = new User(); //중복아이디 막기... 이거 너무 귀찮으니까 나중에 하자
 

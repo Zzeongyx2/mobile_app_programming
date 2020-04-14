@@ -42,7 +42,14 @@ public class SignUpActivity extends Activity {
                 if(id.isEmpty()||password.isEmpty()||name.isEmpty()){ //만약 빈칸이라면
                     Toast myToast = Toast.makeText(getApplicationContext(), R.string.NULL_MESSAGE,Toast.LENGTH_SHORT);
                     myToast.show();
-                }else{
+                    return;
+                }
+                if(helper.isUser(id)){
+                    Toast myToast = Toast.makeText(getApplicationContext(), R.string.FAIL_ID,Toast.LENGTH_SHORT);
+                    myToast.show();
+                    return;
+                }
+                else{
                     CurUser =new User(id,password,name);
                     helper.insertUser(CurUser);
                     Intent intent = new Intent(getApplicationContext(), LoginActivity.class);//다음페이지
