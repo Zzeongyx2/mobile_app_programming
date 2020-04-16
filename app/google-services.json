@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "42550766945",
+    "firebase_url": "https://mobilequiz-be239.firebaseio.com",
+    "project_id": "mobilequiz-be239",
+    "storage_bucket": "mobilequiz-be239.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:42550766945:android:47726bb2aba3f51a216920",
+        "android_client_info": {
+          "package_name": "hitesh.asimplegame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "42550766945-jlf1mhdgm44k6jhb5ks15rmguj3vlrct.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCM5JVPd-8xlt0o_wmcY9TxNRRgQNWHUp4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "42550766945-jlf1mhdgm44k6jhb5ks15rmguj3vlrct.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
