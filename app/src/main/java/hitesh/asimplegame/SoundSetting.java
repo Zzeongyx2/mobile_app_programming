@@ -37,29 +37,26 @@ public class SoundSetting extends Activity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                     if(isChecked){
                         mp.start();
-                    }
-                    else{
+                    } else{
                         mp.stop();
                         mp.reset();
                     }
             }
         });
 
-        effect.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() { // 효과음
-            @Override
+        effect.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() { // 효과음 버튼 Listenr마다 넣어주기
+            @Override //볼륨조절로 온오프하기
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if(isChecked){
-                    soundPool.setVolume(soundPlay,0,0);
-                }
-                else{
-                    soundPool.setVolume(soundPlay,1,1);
+                    soundPool.setVolume(soundPlay,0,0); //min
+                } else{
+                    soundPool.setVolume(soundPlay,1,1);//max
                 }
             }
         });
-
     }
 
-    private void setSoundPool() { //생성자
+    private void setSoundPool() { //생성자 soundPool생성자가 최근에 deprecate되었기 때문에
         if (soundPool == null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 AudioAttributes audioAttributes = new AudioAttributes.Builder()
