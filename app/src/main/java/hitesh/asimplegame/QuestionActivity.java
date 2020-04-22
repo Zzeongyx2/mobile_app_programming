@@ -28,6 +28,8 @@ public class QuestionActivity extends Activity {
     private static final String TAG = QuestionActivity.class.getSimpleName();       //getSimpleName() : 단순히 클래스 이름만을 가져옴
     private static int level;
 
+    final private int INF = 99999;
+
     private List<Question> questionList;
     private int score = 0;
     private int questionID = 0;
@@ -41,11 +43,12 @@ public class QuestionActivity extends Activity {
     private TextView txtQuestion, times, scored,chance;
     private Button button1, button2, button3;
 
-    //목숨기능
-    int life;
+    //모드
+    int life;//목숨기능
+    boolean isLifeMode = true; //라이프모드인지
 
-//    private int level;
-CounterClass timer = new CounterClass(60000, 1000);
+    //    private int level;
+    CounterClass timer = new CounterClass(60000, 1000);
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -71,10 +74,24 @@ CounterClass timer = new CounterClass(60000, 1000);
         //========================세팅 값============================//
         sf = getSharedPreferences("settings",MODE_PRIVATE);
         vol = sf.getInt("effect",1);
-        life = sf.getInt("lifeMode",1);
         chance = findViewById(R.id.chance);
-        if(life==1) chance.setText(" "); // 적용
-        Toast.makeText(getApplicationContext(), "vol : " + vol, Toast.LENGTH_SHORT).show();
+        //========================모드 결정=========================//
+        Toast.makeText(getApplicationContext(), "life : " + life, Toast.LENGTH_SHORT).show();
+
+        if(sf.getBoolean("lifeMode",false)){
+            life = 3;//목숨 3개
+            chance.setText("Chance: "+ life); // 적용
+            isLifeMode = true;
+        }else if(sf.getBoolean("inifMode",false)){
+            life = INF;
+            chance.setText("무한대");
+            isLifeMode =false;
+        }else{
+            life = 1;
+            isLifeMode = false;
+            chance.setText(" ");
+        }
+
         // the textview in which score will be displayed
         scored = (TextView) findViewById(R.id.score);
 
@@ -88,7 +105,6 @@ CounterClass timer = new CounterClass(60000, 1000);
 
         // A timer of 60 seconds to play for, with an interval of 1 second (1000 milliseconds)
         timer.start();
-
         // button click listeners
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,7 +154,7 @@ CounterClass timer = new CounterClass(60000, 1000);
             score++;        //score 0인데 왜 화면에는 1로 시작?           //정답일때 스코어가 올라가는데 왜 처음이 1인가?
             scored.setText("Score : " + score);
         } else {
-            if(life==1){
+            if(life<=1){
                 // if unlucky start activity and finish the game
                 Intent intent = new Intent(QuestionActivity.this, ResultActivity.class);
                 timer.cancel();
@@ -151,7 +167,7 @@ CounterClass timer = new CounterClass(60000, 1000);
             }else{
                 life--;
             }
-            chance.setText("Chance : "+life);
+            if(isLifeMode ==true) chance.setText("Chance : "+life); //목숨 모드일 때
         }
 
         if (questionID < QuizDBOpenHelper.getSize()) {          //최대 20문제인가봄(0~19 -> 20문제)

@@ -56,7 +56,7 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
                 + " TEXT, " + KEY_ANSWER + " TEXT, " + KEY_OPTA + " TEXT, "
                 + KEY_OPTB + " TEXT, " + KEY_OPTC + " TEXT)";
 
-        String voice_sql ="CREATE TABLE IF NOT EXISTS " + TABLE_VOICE + " ( "
+        String voice_sql = "CREATE TABLE IF NOT EXISTS " + TABLE_VOICE + " ( "
                 + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_QUES
                 + " TEXT, " + KEY_ANSWER + " TEXT )";
 
@@ -69,7 +69,7 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
     }
 
     private void addQuestion() {
-        for (int i = 0;i<getSize(); i++) {
+        for (int i = 0; i < getSize(); i++) {
             int questNumA = (int) (Math.random() * 10);
             int questNumB = (int) (Math.random() * 10);
             int questAnswer = 0;
@@ -198,20 +198,21 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
 
     //<===========VOICE 문제 관련 DB처리 (SQLITE)======================
     //생성자
-    private void addVoiceQuestion(){
-        VoiceQuestion v1 = new VoiceQuestion("하와이안 피자는 어디서 만들었을까요?","캐나다");
-        VoiceQuestion v2 = new VoiceQuestion("눈은 눈인데 먹을 수 없는 눈은?","함박눈");
-        VoiceQuestion v3 = new VoiceQuestion("감은 감인제 먹을 수 없는 감은?","영감");
-        VoiceQuestion v4 = new VoiceQuestion("오리가 얼면?","언덕");
-        VoiceQuestion v5 = new VoiceQuestion("전화기로 세운 건물은?","콜로세움");
+    private void addVoiceQuestion() {
+        VoiceQuestion v1 = new VoiceQuestion("4 더하기 5 빼기 3은 무엇일까요?", "6");
+        VoiceQuestion v2 = new VoiceQuestion("3 곱하기 7 더하기 3은 무엇일까요?", "24");
+        VoiceQuestion v3 = new VoiceQuestion("15 빼기 4 곱하기 3은 무엇일까요?", "3");
+        VoiceQuestion v4 = new VoiceQuestion("4 나누기 2 더하기 5은 무엇일까요?", "7");
+        VoiceQuestion v5 = new VoiceQuestion("5더하기 5은 무엇일까요?", "10");
         addVoiceQuestion(v1);
         addVoiceQuestion(v2);
         addVoiceQuestion(v3);
         addVoiceQuestion(v4);
         addVoiceQuestion(v5);
     }
+
     //DB 적용
-    public void addVoiceQuestion(VoiceQuestion quest){
+    public void addVoiceQuestion(VoiceQuestion quest) {
         ContentValues values = new ContentValues();     //ContentResolver가 처리 할 수 있는 값 집합을 저장
         values.put(KEY_QUES, quest.getQUESTION());
         values.put(KEY_ANSWER, quest.getANSWER());
@@ -220,13 +221,13 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
     }
 
     //voice 문제 반환 (sqlite)
-    public List<VoiceQuestion> getAllVoiceQuestions(){
+    public List<VoiceQuestion> getAllVoiceQuestions() {
         List<VoiceQuestion> quesList = new ArrayList<VoiceQuestion>();
         String selectQuery = "SELECT  * FROM " + TABLE_VOICE;
         database = this.getReadableDatabase();
-        Cursor cursor = database.rawQuery(selectQuery,null);
+        Cursor cursor = database.rawQuery(selectQuery, null);
 
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             do {
                 VoiceQuestion question = new VoiceQuestion();
                 question.setID(cursor.getInt(0));
@@ -234,37 +235,18 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
                 question.setANSWER(cursor.getString(2));
 
                 quesList.add(question);
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
-        String databasePath = "/data/user/0/hitesh.asimplegame/databases";
-        File mFile = new File(databasePath);
-        if (mFile.exists()) {
-            if (mFile.isDirectory()) {
-                File[] files = mFile.listFiles();
-                for (int i = 0; i < files.length; i++) {
-                    if (files[i].delete()) {
-                        Log.d(TAG, "==== Foldering File Deleted.");
-                    } else {
-                        Log.d(TAG, "==== Foldering File Not Deleted.");
-                    }
-                }
-            }
-
-            if (mFile.delete()) {
-                Log.d(TAG, "==== File Deleted.");
-            } else {
-                Log.d(TAG, "==== File Deleted.");
-            }
-        }
+        checkFile();
         return quesList;
     }
 //=========================================================>
 
-    public int getLevel(){
+    public int getLevel() {
         return level;
     }
 
-    public void setLevel(int lv){
+    public void setLevel(int lv) {
         level = lv;
     }
 
@@ -291,7 +273,13 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
                 quesList.add(quest);
             } while (cursor.moveToNext());      //moveToNext : 순서상으로 다음 행 선택
         }
+        checkFile();
+        setLevel(0);
 
+        return quesList;
+    }
+
+    public void checkFile() {
         String databasePath = "/data/user/0/hitesh.asimplegame/databases";
         File mFile = new File(databasePath);
         if (mFile.exists()) {
@@ -312,10 +300,5 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
                 Log.d(TAG, "==== File Deleted.");
             }
         }
-        setLevel(0);
-
-        return quesList;
     }
-
-
 }
