@@ -29,7 +29,7 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
     private static final String KEY_OPTA = "opta";
     private static final String KEY_OPTB = "optb";
     private static final String KEY_OPTC = "optc";
-    private static int size = 5;
+    private static int size = 10;
 
     private SQLiteDatabase database;
 

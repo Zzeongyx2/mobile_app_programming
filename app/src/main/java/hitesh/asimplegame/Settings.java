@@ -25,6 +25,7 @@ public class Settings extends Activity {
 
     SharedPreferences sharedPref = null;
     SharedPreferences.Editor editor = null;
+
     Switch life, effect, bgm, inif; //모드 추가하려면 더 해도..
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -39,6 +40,7 @@ public class Settings extends Activity {
         //===============상태저장=================//
         sharedPref = getSharedPreferences("settings", Context.MODE_PRIVATE);
         editor = sharedPref.edit();
+
         //===============상태 반영================//
         if(sharedPref.getInt("effect",1)==0) effect.setChecked(false);//초기 설정 값과 다르다면
         life.setChecked(sharedPref.getBoolean("lifeMode",false));
@@ -74,6 +76,7 @@ public class Settings extends Activity {
 
     public void lifeMode(View o) {
         if (life.isChecked()) {
+            editor.putInt("mode", 1);
             editor.putBoolean("lifeMode", true);
             editor.putBoolean("inifMode",false);//목숨모드일 경우 자동으로 무한모드 OFF
             inif.setChecked(false);
@@ -84,6 +87,7 @@ public class Settings extends Activity {
     }
     public void inifMode(View o) {
         if (inif.isChecked()) {
+            editor.putInt("mode", 2);
             editor.putBoolean("inifMode", true);
             editor.putBoolean("lifeMode",false);//무한 모드일 경우 자동으로 목숨모드 OFF
             life.setChecked(false);
@@ -92,18 +96,5 @@ public class Settings extends Activity {
         }
         editor.commit();
     }
-    public void check(View o) {
-        Intent intent = new Intent(this, SelectQuestion.class);
-        if(inif.isChecked()) {
-            b.putInt("mode", 2);
-            intent.putExtras(b);
-        }if(life.isChecked()){
-            b.putInt("mode", 1);
-            intent.putExtras(b);
-        }else{
-            b.putInt("mode", 3);
-            intent.putExtras(b);
-        }
-        startActivity(intent);
-    }
+
 }

@@ -22,6 +22,7 @@ public class LevelActivity extends Activity implements View.OnClickListener {
     private int soundID;
     private int vol;//볼륨, 추후 수정
     private SharedPreferences sf;
+    int mode;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +52,8 @@ public class LevelActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Bundle b = getIntent().getExtras();
-        int mode = b.getInt("mode2");
-        if(mode == 1 || mode ==3) {
+        mode = sf.getInt("mode",0);
+        if(mode == 1 || mode == 0) {
             QuizDBOpenHelper.setSize(20);
             Intent intent = new Intent(this, QuestionActivity.class);
             switch (v.getId()) {
