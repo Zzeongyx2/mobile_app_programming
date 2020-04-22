@@ -175,7 +175,6 @@ public class QuestionActivity extends Activity {
 
     }
 
-
     @TargetApi(Build.VERSION_CODES.GINGERBREAD)
     @SuppressLint("NewApi")     //상위버전의 SDK의 API를 사용할때 warning을 없애고 개발자가 해당 API사용 가능
     public class CounterClass extends CountDownTimer {
@@ -214,6 +213,5 @@ public class QuestionActivity extends Activity {
 
         questionID++;
     }
-
 
 }
