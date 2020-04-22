@@ -21,6 +21,8 @@ import androidx.annotation.RequiresApi;
 public class Settings extends Activity {
     private static MediaPlayer mp;
 
+    Bundle b = new Bundle();
+
     SharedPreferences sharedPref = null;
     SharedPreferences.Editor editor = null;
     Switch life, effect, bgm, inif; //모드 추가하려면 더 해도..
@@ -89,5 +91,19 @@ public class Settings extends Activity {
             editor.putBoolean("inifMode", false);
         }
         editor.commit();
+    }
+    public void check(View o) {
+        Intent intent = new Intent(this, SelectQuestion.class);
+        if(inif.isChecked()) {
+            b.putInt("mode", 2);
+            intent.putExtras(b);
+        }if(life.isChecked()){
+            b.putInt("mode", 1);
+            intent.putExtras(b);
+        }else{
+            b.putInt("mode", 3);
+            intent.putExtras(b);
+        }
+        startActivity(intent);
     }
 }

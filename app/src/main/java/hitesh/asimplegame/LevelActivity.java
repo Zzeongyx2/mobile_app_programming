@@ -52,9 +52,9 @@ public class LevelActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         Bundle b = getIntent().getExtras();
-        int mode = b.getInt("mode");
-        if(mode == 1) {
-            QuizDBOpenHelper.setSize(10);
+        int mode = b.getInt("mode2");
+        if(mode == 1 || mode ==3) {
+            QuizDBOpenHelper.setSize(20);
             Intent intent = new Intent(this, QuestionActivity.class);
             switch (v.getId()) {
                 case R.id.btn_easy:
@@ -76,7 +76,7 @@ public class LevelActivity extends Activity implements View.OnClickListener {
         }
         if(mode == 2){
             QuizDBOpenHelper.setSize(500);
-            Intent intent = new Intent(this, InfinityActivity.class);
+            Intent intent = new Intent(this, QuestionActivity.class);
             switch (v.getId()) {
                 case R.id.btn_easy:
                     soundPool.play(soundID, vol, vol, 0, 0, 0);
