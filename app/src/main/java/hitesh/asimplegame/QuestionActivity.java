@@ -77,7 +77,7 @@ public class QuestionActivity extends Activity {
         life = sf.getInt("lifeMode",1);
         chance = findViewById(R.id.chance);
         if(life==1) chance.setText(" "); // 적용
-        Toast.makeText(getApplicationContext(), "vol : " + vol, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "life : " + life, Toast.LENGTH_SHORT).show();
         // the textview in which score will be displayed
         scored = (TextView) findViewById(R.id.score);
 
@@ -143,7 +143,7 @@ public class QuestionActivity extends Activity {
             scored.setText("Score : " + score);
         } else {
 
-            if(life==1){
+            if(life<=1){
                 // if unlucky start activity and finish the game
                 Intent intent = new Intent(QuestionActivity.this, ResultActivity.class);
 

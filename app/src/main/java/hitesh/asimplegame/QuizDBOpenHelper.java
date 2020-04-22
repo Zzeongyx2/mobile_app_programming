@@ -199,11 +199,11 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
     //<===========VOICE 문제 관련 DB처리 (SQLITE)======================
     //생성자
     private void addVoiceQuestion(){
-        VoiceQuestion v1 = new VoiceQuestion("하와이안 피자는 어디서 만들었을까요?","캐나다");
-        VoiceQuestion v2 = new VoiceQuestion("눈은 눈인데 먹을 수 없는 눈은?","함박눈");
-        VoiceQuestion v3 = new VoiceQuestion("감은 감인제 먹을 수 없는 감은?","영감");
-        VoiceQuestion v4 = new VoiceQuestion("오리가 얼면?","언덕");
-        VoiceQuestion v5 = new VoiceQuestion("전화기로 세운 건물은?","콜로세움");
+        VoiceQuestion v1 = new VoiceQuestion("4 더하기 5 빼기 3은 무엇일까요?","6");
+        VoiceQuestion v2 = new VoiceQuestion("3 곱하기 7 더하기 3은 무엇일까요?","24");
+        VoiceQuestion v3 = new VoiceQuestion("15 빼기 4 곱하기 3은 무엇일까요?","3");
+        VoiceQuestion v4 = new VoiceQuestion("4 나누기 2 더하기 5은 무엇일까요?","7");
+        VoiceQuestion v5 = new VoiceQuestion("5더하기 5은 무엇일까요?","10");
         addVoiceQuestion(v1);
         addVoiceQuestion(v2);
         addVoiceQuestion(v3);

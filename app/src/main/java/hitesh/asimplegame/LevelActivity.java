@@ -47,6 +47,7 @@ public class LevelActivity extends Activity implements View.OnClickListener {
 //        QuizDBOpenHelper db = new QuizDBOpenHelper(this);
 //        Bundle b = new Bundle();
         Intent intent = new Intent(this, QuestionActivity.class);
+
         switch(v.getId()){
             case R.id.btn_easy:
                 soundPool.play(soundID,vol,vol,0,0,0);
@@ -65,13 +66,19 @@ public class LevelActivity extends Activity implements View.OnClickListener {
 //                db.setLevel(3);
 //                b.putInt("level",3);
                 break;
+
             default:
                 break;
         }
 //        intent.putExtras(b);
         startActivity(intent);
     }
-
+    public void voice(View o) {
+        soundPool.play(soundID,vol,vol,0,0,0);
+        Intent intent = new Intent(this, VoiceQuestionActivity.class);
+        startActivity(intent);
+        finish();
+    }
     //    public void easy(View o) {
 ////        setLevel(0);
 //        Intent intent = new Intent(this, QuestionActivity.class);

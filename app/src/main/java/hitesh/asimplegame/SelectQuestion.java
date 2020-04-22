@@ -70,10 +70,5 @@ public class SelectQuestion extends Activity {
         Intent intent = new Intent(this, Settings.class);
         startActivity(intent);
     }
-    public void voice(View o) {
-        vol = sf.getInt("effect",1);
-        soundPool.play(soundID,vol,vol,0,0,0);
-        Intent intent = new Intent(this, VoiceQuestionActivity.class);
-        startActivity(intent);
-    }
+
 }
