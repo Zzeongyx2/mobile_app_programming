@@ -43,12 +43,6 @@ public class LevelActivity extends Activity implements View.OnClickListener {
         btn_h.setOnClickListener(this);
     }
 
-    public void voice(View o) {
-        vol = sf.getInt("effect", 1);
-        soundPool.play(soundID, vol, vol, 0, 0, 0);
-        Intent intent = new Intent(this, VoiceQuestionActivity.class);
-        startActivity(intent);
-    }
 
     @Override
     public void onClick(View v) {
@@ -98,7 +92,11 @@ public class LevelActivity extends Activity implements View.OnClickListener {
             startActivity(intent);
         }
     }
-
-
+    public void voice(View o) {
+        vol = sf.getInt("effect", 1);
+        soundPool.play(soundID, vol, vol, 0, 0, 0);
+        Intent intent = new Intent(this, VoiceQuestionActivity.class);
+        startActivity(intent);
+    }
 
 }
