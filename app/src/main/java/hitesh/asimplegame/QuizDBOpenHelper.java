@@ -266,10 +266,12 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
         return quesList;
     }
     private void addScore(){
-        Score score = new Score("민트초코 존맛탱",10);
+        Score score = new Score("민트초코 존맛탱",100);
         addScore(score);
         Score score1 = new Score("파인애플피자 존맛탱",9);
         addScore(score1);
+        Score score2 = new Score("마라탕 먹고 싶다",9);
+        addScore(score2);
     }
 
     public void addScore(Score score) {
@@ -280,7 +282,6 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
         database.insert(TABLE_SCORE, null, values); //외부 클래스에서 직접 사용시 ERROR, 객체 생성 후 사용
     }
     //========================================================================>//
-
 
     public List<Question> getAllQuestions(int lv) {
 //        getLevel();
