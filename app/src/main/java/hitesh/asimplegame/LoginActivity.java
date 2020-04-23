@@ -43,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         logInpasswd = findViewById(R.id.loginpaswd);
         btnLogIn = findViewById(R.id.btnLogIn);
         signup = findViewById(R.id.TVSignIn);
+
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -83,8 +84,10 @@ public class LoginActivity extends AppCompatActivity {
                             if (!task.isSuccessful()) {
                                 Toast.makeText(LoginActivity.this, "Not sucessfull", Toast.LENGTH_SHORT).show();
                             } else {
-                                editor.putString("id",userEmail);
+                                String user = userEmail.substring(0,userEmail.indexOf("@"));
+                                editor.putString("id",user);
                                 editor.commit();
+                                Toast.makeText(getApplicationContext(), "user : " + user, Toast.LENGTH_SHORT).show();//debug
                                 startActivity(new Intent(LoginActivity.this, SelectQuestion.class));
                             }
                         }

@@ -46,8 +46,6 @@ public class LevelActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Bundle b = getIntent().getExtras();
-
         mode = sf.getInt("mode",0);
         if(mode == 1 || mode == 0) {
             QuizDBOpenHelper.setSize(20);

@@ -42,8 +42,16 @@ public class ResultActivity extends Activity {
         ContentValues values = new ContentValues();     //ContentResolver가 처리 할 수 있는 값 집합을 저장
         values.put(helper.getKeyId(),username);
         values.put(helper.getKeyScore(), score);
-        db.insert(helper.getTableScore(),null,values); // 직접삽입
 
+        int oldScore = helper.getScore(username);
+
+        if(oldScore==-1){
+            db.insert(helper.getTableScore(),null,values); // 직접삽입
+        }else{
+            if(oldScore<score){
+                db.update(helper.getTableScore(),values,helper.getKeyId()+"=?",new String[]{username});//스코어 갱신 시 현재 values 값을 갱신
+            }
+        }
         //Log.d("ResultActivity",username);
         //Toast.makeText(getApplicationContext(), "inifMode : " + sf.getString("id",username), Toast.LENGTH_SHORT).show();
 

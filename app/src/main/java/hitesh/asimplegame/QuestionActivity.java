@@ -112,7 +112,7 @@ public class QuestionActivity extends Activity {
             public void onClick(View v) {
 
                 soundPool.play(soundID,vol,vol,0,0,0);//효과음 재생
-                Toast.makeText(getApplicationContext(), "vol : " + vol, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "vol : " + vol, Toast.LENGTH_SHORT).show(); debug
                 // passing the button text to other method
                 // to check whether the anser is correct or not
                 // same for all three buttons

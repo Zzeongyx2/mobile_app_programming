@@ -22,6 +22,7 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
     private static final String TABLE_QUEST = "quest";
     private static final String TABLE_VOICE = "voicequest";
     private static final String TABLE_SCORE = "score";
+    Cursor cursor;
 
     // tasks Table Columns names
     private static final String KEY_ID = "qid";
@@ -281,6 +282,19 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
         // Inserting Row
         database.insert(TABLE_SCORE, null, values); //외부 클래스에서 직접 사용시 ERROR, 객체 생성 후 사용
     }
+    public int getScore(String name){
+        String selectQuery ="SELECT "+KEY_SCORE+" FROM "+TABLE_SCORE+" WHERE "+KEY_ID+"="+" '"+name+"' ";
+        database = this.getReadableDatabase();
+         cursor = database.rawQuery(selectQuery, null);
+        if(cursor.getCount()==0) return -1;
+        else return cursor.getInt(0);
+    }
+//    public int getScore(String name){
+//        String selectQuery ="SELECT "+KEY_SCORE+" FROM "+TABLE_SCORE+" WHERE "+KEY_ID+" = "+name;
+//        database = this.getReadableDatabase();
+//        Cursor cursor = database.rawQuery(selectQuery, null);
+//        return
+//    }
     //========================================================================>//
 
     public List<Question> getAllQuestions(int lv) {
