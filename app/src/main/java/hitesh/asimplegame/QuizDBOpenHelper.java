@@ -280,7 +280,6 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
         values.put(KEY_SCORE, score.getScore());
         // Inserting Row
         database.insert(TABLE_SCORE, null, values); //외부 클래스에서 직접 사용시 ERROR, 객체 생성 후 사용
-        checkFile();
     }
     //========================================================================>//
 
