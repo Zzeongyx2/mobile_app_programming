@@ -38,7 +38,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Score : 1"
+                    android:text="Score : 0"
                     android:textColor="#ffffff"
                     android:textSize="25.0sp"
                     android:textStyle="bold" />

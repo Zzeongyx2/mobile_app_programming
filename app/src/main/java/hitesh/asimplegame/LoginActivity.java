@@ -84,10 +84,10 @@ public class LoginActivity extends AppCompatActivity {
                             if (!task.isSuccessful()) {
                                 Toast.makeText(LoginActivity.this, "Not sucessfull", Toast.LENGTH_SHORT).show();
                             } else {
-                                String user = userEmail.substring(0,userEmail.indexOf("@"));
-                                editor.putString("id",user);
+                                //String user = userEmail.substring(0,userEmail.indexOf("@"));
+                                editor.putString("id",userEmail);
                                 editor.commit();
-                                Toast.makeText(getApplicationContext(), "user : " + user, Toast.LENGTH_SHORT).show();//debug
+                                Toast.makeText(getApplicationContext(), "user : " + userEmail, Toast.LENGTH_SHORT).show();//debug
                                 startActivity(new Intent(LoginActivity.this, SelectQuestion.class));
                             }
                         }

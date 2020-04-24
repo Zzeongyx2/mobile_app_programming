@@ -74,7 +74,6 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
         addQuestion();
         addScore();
 //        db.close();
-        //        addQuestion(levelActivity.getLevel());
 
     }
 
@@ -182,7 +181,6 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
         }
     }
 
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldV, int newV) {      //이건 사용을 안하는데?
         setLevel(0);
@@ -264,6 +262,7 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
                 quesList.add(score);
             } while (cursor.moveToNext());
         }
+        checkFile();
         return quesList;
     }
     private void addScore(){
@@ -281,20 +280,8 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
         values.put(KEY_SCORE, score.getScore());
         // Inserting Row
         database.insert(TABLE_SCORE, null, values); //외부 클래스에서 직접 사용시 ERROR, 객체 생성 후 사용
+        checkFile();
     }
-    public int getScore(String name){
-        String selectQuery ="SELECT "+KEY_SCORE+" FROM "+TABLE_SCORE+" WHERE "+KEY_ID+"="+" '"+name+"' ";
-        database = this.getReadableDatabase();
-         cursor = database.rawQuery(selectQuery, null);
-        if(cursor.getCount()==0) return -1;
-        else return cursor.getInt(0);
-    }
-//    public int getScore(String name){
-//        String selectQuery ="SELECT "+KEY_SCORE+" FROM "+TABLE_SCORE+" WHERE "+KEY_ID+" = "+name;
-//        database = this.getReadableDatabase();
-//        Cursor cursor = database.rawQuery(selectQuery, null);
-//        return
-//    }
     //========================================================================>//
 
     public List<Question> getAllQuestions(int lv) {
