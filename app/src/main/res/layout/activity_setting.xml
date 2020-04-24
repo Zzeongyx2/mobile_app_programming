@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#FCF5EF">
 
     <Switch
         android:id="@+id/btn_bgm"
@@ -12,7 +13,9 @@
         android:layout_height="55dp"
         android:layout_gravity="center"
         android:layout_marginTop="70dp"
-        android:text="@string/setting_back" />
+        android:text="@string/setting_back"
+        android:textStyle="bold"
+        android:textColor="#0077FF"/>
 
     <Switch
         android:id="@+id/btn_effect"
@@ -22,7 +25,9 @@
         android:layout_height="55dp"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
-        android:text="@string/setting_effect" />
+        android:text="@string/setting_effect"
+        android:textStyle="bold"
+        android:textColor="#0077FF"/>
 
     <Switch
         android:id="@+id/btn_life"
@@ -32,7 +37,9 @@
         android:layout_height="55dp"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
-        android:text="@string/setting_life" />
+        android:text="@string/setting_life"
+        android:textStyle="bold"
+        android:textColor="#0077FF"/>
 
     <Switch
         android:id="@+id/btn_inif"
@@ -42,6 +49,8 @@
         android:layout_height="55dp"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
-        android:text="@string/setting_inif" />
+        android:text="@string/setting_inif"
+        android:textStyle="bold"
+        android:textColor="#0077FF"/>
 
 </LinearLayout>

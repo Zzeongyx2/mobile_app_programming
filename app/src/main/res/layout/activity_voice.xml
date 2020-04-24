@@ -2,21 +2,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#00C3FF">
     <TextView
         android:id="@+id/title"
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Question  1"
+        android:textStyle="bold"
         android:textSize="35sp"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:textColor="#FFFFFF"/>
     <TextView
         android:id="@+id/information"
+        android:textStyle="bold"
+        android:background="#FFFFFF"
         android:layout_weight="2"
         android:gravity="center"
         android:layout_gravity="center"
         android:layout_width="match_parent"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_height="wrap_content"
         android:text="듣기 문제입니다 문제 듣기를 클릭하여 답을 음성으로 제출하여 주세요"
         android:textSize="20sp"
@@ -27,22 +34,26 @@
     <Button
         android:id="@+id/btn_question"
         android:onClick="question"
-        android:layout_width="wrap_content"
+        android:background="#FCF5EF"
+        android:layout_width="150sp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:background="#000000"
         android:padding="20dp"
         android:text="@string/action_listen"
-        android:textColor="#ffffff"
+        android:textColor="#0077FF"
         android:textSize="20sp" />
 
     <TextView
         android:id="@+id/stt_result"
+        android:textStyle="bold"
+        android:background="#FFFFFF"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10sp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_weight="1"
         android:gravity="center"
         android:padding="20dp"
@@ -52,29 +63,29 @@
     <Button
         android:id="@+id/btn_answer"
         android:onClick="answer"
-        android:layout_width="wrap_content"
+        android:layout_width="150sp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:background="#000000"
+        android:background="#FCF5EF"
         android:padding="20dp"
         android:text="@string/action_submit"
-        android:textColor="#ffffff"
+        android:textColor="#0077FF"
         android:textSize="20sp" />
 
     <Button
         android:id="@+id/btn_next"
-        android:layout_width="wrap_content"
+        android:layout_width="150sp"
         android:soundEffectsEnabled="true"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="30dp"
-        android:background="#000000"
+        android:background="#FCF5EF"
         android:onClick="next"
         android:padding="20dp"
         android:text="@string/next"
-        android:textColor="#ffffff"
+        android:textColor="#0077FF"
         android:textSize="20sp" />
 
 </LinearLayout>

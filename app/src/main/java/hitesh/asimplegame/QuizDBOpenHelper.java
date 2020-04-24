@@ -1,34 +1,29 @@
 package hitesh.asimplegame;
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.util.Log;
-
 public class QuizDBOpenHelper extends SQLiteOpenHelper {
     private static final String TAG = "QuizDBOpenHelper";
 
-//    private static int DATABASE_RANDOM = 1;
-    private static final int DATABASE_VERSION = 1;
+    //private static int DATABASE_RANDOM = 1;
+    private static int DATABASE_RANDOMING = 1;
     // Database Name
     private static final String DATABASE_NAME = "mathsone";
     // tasks table name
     private static final String TABLE_QUEST = "quest";
-<<<<<<< Updated upstream
-=======
     private static final String TABLE_VOICE = "voicequest";
     private static final String TABLE_SCORE = "score";
+    Cursor cursor;
 
->>>>>>> Stashed changes
     // tasks Table Columns names
     private static final String KEY_ID = "qid";
     private static final String KEY_QUES = "question";
@@ -36,34 +31,33 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
     private static final String KEY_OPTA = "opta";
     private static final String KEY_OPTB = "optb";
     private static final String KEY_OPTC = "optc";
-<<<<<<< Updated upstream
-
-=======
     private static final String KEY_SCORE = "keyScore";
     private static int size = 5;
->>>>>>> Stashed changes
 
     private SQLiteDatabase database;
 
     private int level;
 
     public QuizDBOpenHelper(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        super(context, DATABASE_NAME, null, DATABASE_RANDOMING);
+    }
+
+    public static void setSize(int i) {
+        size = i;
+    }
+
+    public static int getSize() {
+        return size;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {       //디비를 쓰긴함?
         database = db;
+
         String sql = "CREATE TABLE IF NOT EXISTS " + TABLE_QUEST + " ( "
                 + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_QUES
                 + " TEXT, " + KEY_ANSWER + " TEXT, " + KEY_OPTA + " TEXT, "
                 + KEY_OPTB + " TEXT, " + KEY_OPTC + " TEXT)";
-<<<<<<< Updated upstream
-        db.execSQL(sql);
-//        addQuestion(levelActivity.getLevel());
-        addQuestion();
-        // db.close();
-=======
 
         String voice_sql = "CREATE TABLE IF NOT EXISTS " + TABLE_VOICE + " ( "
                 + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_QUES
@@ -71,6 +65,8 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
 
         String score_sql = "CREATE TABLE IF NOT EXISTS " + TABLE_SCORE + " ( "
                 + KEY_ID + " TEXT, " + KEY_SCORE + " INTEGER " + " )";
+
+
 
         db.execSQL(sql);
         db.execSQL(voice_sql);
@@ -80,58 +76,11 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
         addQuestion();
         addScore();
 //        db.close();
-        //        addQuestion(levelActivity.getLevel());
 
->>>>>>> Stashed changes
     }
 
-/*    private void addQuestion() {
-        Question q1 = new Question("5+2 = ?", "7", "8", "6", "7");
-        addQuestion(q1);
-        Question q2 = new Question("2+18 = ?", "18", "19", "20", "20");
-        addQuestion(q2);
-        Question q3 = new Question("10-3 = ?", "6", "7", "8", "7");
-        addQuestion(q3);
-        Question q4 = new Question("5+7 = ?", "12", "13", "14", "12");
-        addQuestion(q4);
-        Question q5 = new Question("3-1 = ?", "1", "3", "2", "2");
-        addQuestion(q5);
-        Question q6 = new Question("0+1 = ?", "1", "0", "10", "1");
-        addQuestion(q6);
-        Question q7 = new Question("9-9 = ?", "0", "9", "1", "0");
-        addQuestion(q7);
-        Question q8 = new Question("3+6 = ?", "8", "7", "9", "9");
-        addQuestion(q8);
-        Question q9 = new Question("1+5 = ?", "6", "7", "5", "6");
-        addQuestion(q9);
-        Question q10 = new Question("7-5 = ?", "3", "2", "6", "2");
-        addQuestion(q10);
-        Question q11 = new Question("7-2 = ?", "7", "6", "5", "5");
-        addQuestion(q11);
-        Question q12 = new Question("3+5 = ?", "8", "7", "5", "8");
-        addQuestion(q12);
-        Question q13 = new Question("0+6 = ?", "7", "6", "5", "6");
-        addQuestion(q13);
-        Question q14 = new Question("12-10 = ?", "1", "2", "3", "2");
-        addQuestion(q14);
-        Question q15 = new Question("12+2 = ?", "14", "15", "16", "14");
-        addQuestion(q15);
-        Question q16 = new Question("2-1 = ?", "2", "1", "0", "1");
-        addQuestion(q16);
-        Question q17 = new Question("6-6 = ?", "6", "12", "0", "0");
-        addQuestion(q17);
-        Question q18 = new Question("5-1 = ?", "4", "3", "2", "4");
-        addQuestion(q18);
-        Question q19 = new Question("4+2 = ?", "6", "7", "5", "6");
-        addQuestion(q19);
-        Question q20 = new Question("5+1 = ?", "6", "7", "5", "6");
-        addQuestion(q20);
-        Question q21 = new Question("5-4 = ?", "5", "4", "1", "1");
-        addQuestion(q21);
-    }*/
-
     private void addQuestion() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < getSize(); i++) {
             int questNumA = (int) (Math.random() * 10);
             int questNumB = (int) (Math.random() * 10);
             int questAnswer = 0;
@@ -228,21 +177,11 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
                     question = new Question(questionString, String.valueOf(optA), String.valueOf(optB), String.valueOf(optC), String.valueOf(questAnswer));
                     addQuestion(question);
                     break;
-//                case 3:
-//                    break;
                 default:
                     break;
             }
         }
     }
-//    public static void setDatabaseRandoming(){
-//        if(DATABASE_RANDOM<=1){
-//            DATABASE_RANDOM=2;
-//        }
-//        else{
-//            DATABASE_RANDOM=1;
-//        }
-//    }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldV, int newV) {      //이건 사용을 안하는데?
@@ -252,15 +191,20 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
         // Create tables again
         onCreate(db);
     }
-
-//    @Override
-//    public void onDowngrade(SQLiteDatabase db, int oldV, int newV){
-//        setLevel(0);
-//        // Drop older table if existed
-//        db.execSQL("DROP TABLE IF EXISTS "  +TABLE_QUEST);
-//        // Create tables again
-//        onCreate(db);
-//    }
+    @Override
+    public void onDowngrade(SQLiteDatabase db, int oldV, int newV){
+        // Drop older table if existed
+        db.execSQL("DROP TABLE IF EXISTS "  +TABLE_QUEST);
+        // Create tables again
+        onCreate(db);
+    }
+    public static void setDBRandom() {
+        if (DATABASE_RANDOMING <= 1) {
+            DATABASE_RANDOMING = 2;
+        } else {
+            DATABASE_RANDOMING = 1;
+        }
+    }
 
     // Adding new question
     public void addQuestion(Question quest) {
@@ -275,14 +219,6 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
         database.insert(TABLE_QUEST, null, values);
     }
 
-<<<<<<< Updated upstream
-    public int getLevel(){
-        return level;
-    }
-
-    public void setLevel(int lv){
-        level = lv;
-=======
     //<===========VOICE 문제 관련 DB처리 (SQLITE)======================
     //생성자
     private void addVoiceQuestion() {
@@ -345,10 +281,12 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
         return quesList;
     }
     private void addScore(){
-        Score score = new Score("민트초코 존맛탱",10);
+        Score score = new Score("민트초코 존맛탱",100);
         addScore(score);
         Score score1 = new Score("파인애플피자 존맛탱",9);
         addScore(score1);
+        Score score2 = new Score("마라탕 먹고 싶다",9);
+        addScore(score2);
     }
 
     public void addScore(Score score) {
@@ -357,7 +295,7 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
         values.put(KEY_SCORE, score.getScore());
         // Inserting Row
         database.insert(TABLE_SCORE, null, values); //외부 클래스에서 직접 사용시 ERROR, 객체 생성 후 사용
->>>>>>> Stashed changes
+//        checkFile();
     }
     //========================================================================>//
 
@@ -383,44 +321,35 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
                 quesList.add(quest);
             } while (cursor.moveToNext());      //moveToNext : 순서상으로 다음 행 선택
         }
-<<<<<<< Updated upstream
-
-=======
         setLevel(0);
-        checkFile();
+//        checkFile();
         return quesList;
     }
 
-    public void checkFile() {//왜 있는지 몰라서 따로 빼놓음
->>>>>>> Stashed changes
-        String databasePath = "/data/user/0/hitesh.asimplegame/databases";
-        File mFile = new File(databasePath);
-        if (mFile.exists()) {
-            if (mFile.isDirectory()) {
-                File[] files = mFile.listFiles();
-                for (int i = 0; i < files.length; i++) {
-                    if (files[i].delete()) {
-                        Log.d(TAG, "==== Foldering File Deleted.");
-                    } else {
-                        Log.d(TAG, "==== Foldering File Not Deleted.");
-                    }
-                }
-            }
-
-            if (mFile.delete()) {
-                Log.d(TAG, "==== File Deleted.");
-            } else {
-                Log.d(TAG, "==== File Deleted.");
-            }
-        }
-        setLevel(0);
-
-        return quesList;
-    }
-<<<<<<< Updated upstream
 
 
-=======
+//    public void checkFile() {//왜 있는지 몰라서 따로 빼놓음
+//        String databasePath = "/data/user/0/hitesh.asimplegame/databases";
+//        File mFile = new File(databasePath);
+//        if (mFile.exists()) {
+//            if (mFile.isDirectory()) {
+//                File[] files = mFile.listFiles();
+//                for (int i = 0; i < files.length; i++) {
+//                    if (files[i].delete()) {
+//                        Log.d(TAG, "==== Foldering File Deleted.");
+//                    } else {
+//                        Log.d(TAG, "==== Foldering File Not Deleted.");
+//                    }
+//                }
+//            }
+//
+//            if (mFile.delete()) {
+//                Log.d(TAG, "==== File Deleted.");
+//            } else {
+//                Log.d(TAG, "==== File Deleted.");
+//            }
+//        }
+//    }
     //외부 write를 위한 get method 필요거 아래로 추가
     public String getDatabaseName() {
         return DATABASE_NAME;
@@ -442,5 +371,4 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
     public void setLevel(int lv) {
         level = lv;
     }
->>>>>>> Stashed changes
 }

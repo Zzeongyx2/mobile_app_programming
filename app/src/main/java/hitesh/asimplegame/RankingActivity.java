@@ -20,7 +20,7 @@ public class RankingActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_main);
+        setContentView(R.layout.activity_ranking);
 
         adapter = new ListViewAdapter();
         //리스트뷰 참조 및 adapter달기
@@ -34,7 +34,7 @@ public class RankingActivity extends Activity {
 
         for (int i = 0; i < size; i++) {
             Score score = scoreList.get(i);
-            adapter.addItem(i+1,score.getUser(), score.getScore());
+            adapter.addItem(i+1,score.getUser(), score.getScore());//순위, 유저이름, 스코어
         }
         //board.setText(message);
     }

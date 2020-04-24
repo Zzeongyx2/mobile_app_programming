@@ -2,13 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#FCF5EF">
 
     <Button
         android:id="@+id/btn_math"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#000000"
+        android:background="#0077FF"
         android:layout_marginTop="50dp"
         android:padding="20dp"
         android:layout_gravity="center"
@@ -21,7 +22,7 @@
         android:id="@+id/btn_ranking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#000000"
+        android:background="#0077FF"
         android:layout_marginTop="50dp"
         android:padding="20dp"
         android:layout_gravity="center"
@@ -31,10 +32,23 @@
         android:textSize="20sp"/>
 
     <Button
+        android:id="@+id/btn_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#0077FF"
+        android:layout_marginTop="50dp"
+        android:padding="20dp"
+        android:layout_gravity="center"
+        android:text="SETTING"
+        android:onClick="setting"
+        android:textColor="#ffffff"
+        android:textSize="20sp"/>
+
+    <Button
         android:id="@+id/btn_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#000000"
+        android:background="#0077FF"
         android:layout_marginTop="50dp"
         android:padding="20dp"
         android:layout_gravity="center"

@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Asimplegame.iml" filepath="$PROJECT_DIR$/Asimplegame.iml" group="Asimplegame" />
-      <module fileurl="file://$PROJECT_DIR$/app/Asimplegame-app.iml" filepath="$PROJECT_DIR$/app/Asimplegame-app.iml" group="Asimplegame/app" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="Asimplegame/app" />
     </modules>
   </component>

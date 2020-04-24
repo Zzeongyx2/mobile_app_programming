@@ -19,4 +19,15 @@
     <string name="setting_life">목숨모드</string>
     <string name="setting_inif">무한모드</string>
     <string name="voice_example">여기에 음성이 표시됩니다!</string>
+    <string name="appbar_scrolling_view_behavior" />
+<!--    <string name="color_lightCoral">#E77471</string>-->
+<!--    <string name="color_rubyRed">#F62217</string>-->
+<!--    <string name="color_babyBlue">#ABCEDF</string>-->
+<!--    <string name="color_valentineRed">#E55451</string>-->
+<!--    <string name="color_1">#FCF5EF</string>-->
+<!--    <string name="color_2">#FEA735</string>-->
+<!--    <string name="color_3">#FE7235</string>-->
+<!--    <string name="color_4">#00C3FF</string>-->
+<!--    <string name="color_5">#0077FF</string>-->
+<!--    <string name="white">#FFFFFF</string>-->
 </resources>

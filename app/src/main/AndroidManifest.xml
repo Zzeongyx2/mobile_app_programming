@@ -1,37 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="hitesh.asimplegame" >
+    package="hitesh.asimplegame">
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
         <activity
             android:name=".SelectQuestion"
             android:label="@string/app_name"
             android:screenOrientation="fullSensor">
-            <!--원래 인텐드가 있었던 곳 문제가 있을 시 다시 여기에 넣기-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
         </activity>
+
         <activity android:name=".QuestionActivity"/>
+
         <activity android:name=".RankingActivity"/>
+
         <activity android:name=".LevelActivity"/>
+
         <activity
             android:name=".ResultActivity"
             android:label="@string/app_name"
             android:screenOrientation="fullSensor"/>
+
         <activity
             android:name=".SignUpActivity"
             android:label="sign_up"
             android:screenOrientation="fullSensor">
         </activity>
+
         <activity
             android:name=".Settings"
-            android:label="log_in"
+            android:label="setting"
             android:screenOrientation="fullSensor"/>
         <activity
             android:name=".VoiceQuestionActivity"
@@ -39,13 +41,15 @@
             android:screenOrientation="fullSensor"/>
         <activity
             android:name=".LoginActivity"
-            android:label="log_in"
+            android:label="@string/app_name"
             android:screenOrientation="fullSensor"><!--원래는 : android:screenOrientation="portrait"-->
-            <!--바뀐 인텐드-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
 </manifest>
+

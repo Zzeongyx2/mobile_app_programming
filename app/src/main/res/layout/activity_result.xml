@@ -28,7 +28,7 @@
             android:padding="20dp"
             android:layout_gravity="center"
             android:onClick="playagain"
-            android:text="PLAY AGAIN"
+            android:text="메인 페이지로"
             android:textColor="#ffffff"
             android:textSize="20sp"/>
     </LinearLayout>

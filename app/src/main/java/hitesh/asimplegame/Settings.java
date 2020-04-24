@@ -59,7 +59,7 @@ public class Settings extends Activity {
             editor.putInt("effect", 0);
         }
         editor.commit();
-       // Toast.makeText(getApplicationContext(), "vol : " + sharedPref.getInt("effect",1), Toast.LENGTH_SHORT).show();//debug
+        // Toast.makeText(getApplicationContext(), "vol : " + sharedPref.getInt("effect",1), Toast.LENGTH_SHORT).show();//debug
     }
 
     public void lifeMode(View o) {

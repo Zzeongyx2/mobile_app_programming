@@ -1,5 +1,7 @@
 package hitesh.asimplegame;
 
+import android.graphics.drawable.Drawable;
+
 public class Score { //혹시나 하는 확장을 위해 클래스 생성
     private int score;
     private String user;
