@@ -42,6 +42,7 @@ public class QuestionActivity extends Activity {
     private Question currentQ;
     private TextView txtQuestion, times, scored,chance;
     private Button button1, button2, button3;
+    QuizDBOpenHelper db;
 
     //모드
     int life;//목숨기능
@@ -55,7 +56,7 @@ public class QuestionActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);     //해당 layout 가져옴
-        QuizDBOpenHelper db = new QuizDBOpenHelper(this);  // my question bank class
+        db = new QuizDBOpenHelper(this);  // my question bank class
 
         //=========================효과음============================//
         soundPool = new SoundPool.Builder().build();

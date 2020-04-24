@@ -15,7 +15,7 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
     private static final String TAG = "QuizDBOpenHelper";
 
     //private static int DATABASE_RANDOM = 1;
-    private static final int DATABASE_VERSION = 1;
+    private static int DATABASE_RANDOMING = 2;
     // Database Name
     private static final String DATABASE_NAME = "mathsone";
     // tasks table name
@@ -39,7 +39,7 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
     private int level;
 
     public QuizDBOpenHelper(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        super(context, DATABASE_NAME, null, DATABASE_RANDOMING);
     }
 
     public static void setSize(int i) {
@@ -65,6 +65,8 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
 
         String score_sql = "CREATE TABLE IF NOT EXISTS " + TABLE_SCORE + " ( "
                 + KEY_ID + " TEXT, " + KEY_SCORE + " INTEGER " + " )";
+
+
 
         db.execSQL(sql);
         db.execSQL(voice_sql);
@@ -189,6 +191,20 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
         // Create tables again
         onCreate(db);
     }
+    @Override
+    public void onDowngrade(SQLiteDatabase db, int oldV, int newV){
+        // Drop older table if existed
+        db.execSQL("DROP TABLE IF EXISTS "  +TABLE_QUEST);
+        // Create tables again
+        onCreate(db);
+    }
+    public static void setDBRandom() {
+        if (DATABASE_RANDOMING <= 1) {
+            DATABASE_RANDOMING = 2;
+        } else {
+            DATABASE_RANDOMING = 1;
+        }
+    }
 
     // Adding new question
     public void addQuestion(Question quest) {
@@ -262,16 +278,15 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
                 quesList.add(score);
             } while (cursor.moveToNext());
         }
-        checkFile();
         return quesList;
     }
     private void addScore(){
-        Score score = new Score("민트초코 존맛탱",100);
-        addScore(score);
-        Score score1 = new Score("파인애플피자 존맛탱",9);
-        addScore(score1);
-        Score score2 = new Score("마라탕 먹고 싶다",9);
-        addScore(score2);
+//        Score score = new Score("민트초코 존맛탱",100);
+//        addScore(score);
+//        Score score1 = new Score("파인애플피자 존맛탱",9);
+//        addScore(score1);
+//        Score score2 = new Score("마라탕 먹고 싶다",9);
+//        addScore(score2);
     }
 
     public void addScore(Score score) {
@@ -306,32 +321,9 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
             } while (cursor.moveToNext());      //moveToNext : 순서상으로 다음 행 선택
         }
         setLevel(0);
-        checkFile();
         return quesList;
     }
 
-    public void checkFile() {//왜 있는지 몰라서 따로 빼놓음
-        String databasePath = "/data/user/0/hitesh.asimplegame/databases";
-        File mFile = new File(databasePath);
-        if (mFile.exists()) {
-            if (mFile.isDirectory()) {
-                File[] files = mFile.listFiles();
-                for (int i = 0; i < files.length; i++) {
-                    if (files[i].delete()) {
-                        Log.d(TAG, "==== Foldering File Deleted.");
-                    } else {
-                        Log.d(TAG, "==== Foldering File Not Deleted.");
-                    }
-                }
-            }
-
-            if (mFile.delete()) {
-                Log.d(TAG, "==== File Deleted.");
-            } else {
-                Log.d(TAG, "==== File Deleted.");
-            }
-        }
-    }
     //외부 write를 위한 get method 필요거 아래로 추가
     public String getDatabaseName() {
         return DATABASE_NAME;

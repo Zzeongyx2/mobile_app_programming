@@ -42,14 +42,16 @@ public class ResultActivity extends Activity {
         ContentValues values = new ContentValues();     //ContentResolver가 처리 할 수 있는 값 집합을 저장
         values.put(helper.getKeyId(),username);
         values.put(helper.getKeyScore(), score);
+        db.insert(helper.getTableScore(),null,values); // 직접삽입
 
         //Log.d("ResultActivity",username);
-        Toast.makeText(getApplicationContext(), "inifMode : " + sf.getString("id",username), Toast.LENGTH_SHORT).show();
-        helper.addScore(new Score(username,score));
+        //Toast.makeText(getApplicationContext(), "inifMode : " + sf.getString("id",username), Toast.LENGTH_SHORT).show();
+
     }
 
     public void playagain(View o) {
-//        setDatabaseRandoming();
+        helper.setDBRandom();
+
         Intent intent = new Intent(this, SelectQuestion.class);
         startActivity(intent);
     }
