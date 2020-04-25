@@ -15,7 +15,7 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
     private static final String TAG = "QuizDBOpenHelper";
 
     //private static int DATABASE_RANDOM = 1;
-    private static int DATABASE_RANDOMING = 2;
+    private static int DB_RANDOM = 1;
     // Database Name
     private static final String DATABASE_NAME = "mathsone";
     // tasks table name
@@ -39,7 +39,7 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
     private int level;
 
     public QuizDBOpenHelper(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_RANDOMING);
+        super(context, DATABASE_NAME, null, DB_RANDOM);
     }
 
     public static void setSize(int i) {
@@ -65,8 +65,6 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
 
         String score_sql = "CREATE TABLE IF NOT EXISTS " + TABLE_SCORE + " ( "
                 + KEY_ID + " TEXT, " + KEY_SCORE + " INTEGER " + " )";
-
-
 
         db.execSQL(sql);
         db.execSQL(voice_sql);
@@ -185,25 +183,19 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldV, int newV) {      //이건 사용을 안하는데?
-        setLevel(0);
+//        setLevel(0);
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_QUEST);      //테이블 생성을 위한 문자열 전달
         // Create tables again
         onCreate(db);
     }
+
     @Override
-    public void onDowngrade(SQLiteDatabase db, int oldV, int newV){
+    public void onDowngrade(SQLiteDatabase db, int oldV, int newV) {
         // Drop older table if existed
-        db.execSQL("DROP TABLE IF EXISTS "  +TABLE_QUEST);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_QUEST);
         // Create tables again
         onCreate(db);
-    }
-    public static void setDBRandom() {
-        if (DATABASE_RANDOMING <= 1) {
-            DATABASE_RANDOMING = 2;
-        } else {
-            DATABASE_RANDOMING = 1;
-        }
     }
 
     // Adding new question
@@ -263,10 +255,12 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
         }
         return quesList;
     }
+
     //<========================= 스코어 저장=========================
     public List<Score> getAllScore() {
+        Log.d(TAG, "======================" + getLevel());
         List<Score> quesList = new ArrayList<>();
-        String selectQuery = "SELECT  * FROM " + TABLE_SCORE +" ORDER BY "+KEY_SCORE+" DESC"; //내림차순정렬
+        String selectQuery = "SELECT  * FROM " + TABLE_SCORE + " ORDER BY " + KEY_SCORE + " DESC"; //내림차순정렬
         database = this.getReadableDatabase();
         Cursor cursor = database.rawQuery(selectQuery, null);
 
@@ -280,13 +274,8 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
         }
         return quesList;
     }
-    private void addScore(){
-//        Score score = new Score("민트초코 존맛탱",100);
-//        addScore(score);
-//        Score score1 = new Score("파인애플피자 존맛탱",9);
-//        addScore(score1);
-//        Score score2 = new Score("마라탕 먹고 싶다",9);
-//        addScore(score2);
+
+    private void addScore() {
     }
 
     public void addScore(Score score) {
@@ -299,7 +288,6 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
     //========================================================================>//
 
     public List<Question> getAllQuestions(int lv) {
-//        getLevel();
         setLevel(lv);
         List<Question> quesList = new ArrayList<Question>();
         // Select All Query
@@ -320,7 +308,7 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
                 quesList.add(quest);
             } while (cursor.moveToNext());      //moveToNext : 순서상으로 다음 행 선택
         }
-        setLevel(0);
+//        setLevel(0);
         return quesList;
     }
 
@@ -328,15 +316,19 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
     public String getDatabaseName() {
         return DATABASE_NAME;
     }
+
     public String getTableScore() {
         return TABLE_SCORE;
     }
-    public String getKeyId(){
+
+    public String getKeyId() {
         return KEY_ID;
     }
-    public String getKeyScore(){
+
+    public String getKeyScore() {
         return KEY_SCORE;
     }
+
     //======================//
     public int getLevel() {
         return level;
@@ -344,5 +336,26 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
 
     public void setLevel(int lv) {
         level = lv;
+    }
+
+    public void setDBRandom() {
+        if (DB_RANDOM <= 1) {
+            DB_RANDOM = 2;
+        } else {
+            DB_RANDOM = 1;
+        }
+//        deleteQuiz();
+        Log.d(TAG, "=====================DB RANDOM" + DB_RANDOM);       //random 2일때 안바뀌는데...
+    }
+
+    public void deleteQuiz() {
+        SQLiteDatabase db = this.getWritableDatabase();
+//////        db.delete(TABLE_QUEST, null, null);
+//        db.execSQL("DROP TABLE IF EXISTS '" + TABLE_QUEST + "'");
+//        Log.d(TAG, "======================drop table");
+//        db.close();
+        String clearDB = "DELETE FROM " + TABLE_QUEST;
+        db.execSQL(clearDB);
+        Log.d(TAG, "==========================clear table");
     }
 }

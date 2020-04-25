@@ -55,8 +55,6 @@ public class SelectQuestion extends Activity {
     public void math(View o) {
         soundPool.play(soundID, sf.getInt("effect", 1), sf.getInt("effect", 1), 0, 0, 0);//빠른 업데이트를 위해....
         Intent intent = new Intent(this, LevelActivity.class);
-        b.putInt("mode", 1);
-        intent.putExtras(b);
         startActivity(intent);
     }
 

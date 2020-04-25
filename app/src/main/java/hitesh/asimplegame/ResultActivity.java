@@ -2,11 +2,13 @@ package hitesh.asimplegame;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
+import android.os.Environment;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,6 +46,7 @@ public class ResultActivity extends Activity {
         values.put(helper.getKeyScore(), score);
         db.insert(helper.getTableScore(),null,values); // 직접삽입
 
+
         //Log.d("ResultActivity",username);
         //Toast.makeText(getApplicationContext(), "inifMode : " + sf.getString("id",username), Toast.LENGTH_SHORT).show();
 
@@ -51,7 +54,7 @@ public class ResultActivity extends Activity {
 
     public void playagain(View o) {
         helper.setDBRandom();
-
+        helper.deleteQuiz();
         Intent intent = new Intent(this, SelectQuestion.class);
         startActivity(intent);
     }

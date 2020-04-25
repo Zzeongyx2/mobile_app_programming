@@ -23,6 +23,7 @@ public class LevelActivity extends Activity implements View.OnClickListener {
     private int vol;//볼륨, 추후 수정
     private int mode;
     private SharedPreferences sf;
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,66 +31,60 @@ public class LevelActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_level);
         //setting
         sf = getSharedPreferences("settings",MODE_PRIVATE);
+
+        mode = sf.getInt("mode",0);
         vol = sf.getInt("effect",1);
         //효과음
         soundPool = new SoundPool.Builder().build();
         soundID = soundPool.load(this,R.raw.button,1);
 
         Button btn_e = (Button) findViewById(R.id.btn_easy);
-        btn_e.setOnClickListener(this);
+        btn_e.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LevelActivity.this, QuestionActivity.class);
+                if (mode == 2) {
+                    QuizDBOpenHelper.setSize(500);
+                }else{
+                    QuizDBOpenHelper.setSize(20);
+                }
+                QuestionActivity.setLevel(1);
+                soundPool.play(soundID, vol, vol, 0, 0, 0);
+                startActivity(intent);
+            }
+        });
         Button btn_m = (Button) findViewById(R.id.btn_medium);
-        btn_m.setOnClickListener(this);
+        btn_m.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LevelActivity.this, QuestionActivity.class);
+                if (mode == 2) {
+                    QuizDBOpenHelper.setSize(500);
+                }else{
+                    QuizDBOpenHelper.setSize(20);
+                }
+                QuestionActivity.setLevel(2);
+                soundPool.play(soundID, vol, vol, 0, 0, 0);
+                startActivity(intent);
+            }
+        });
         Button btn_h = (Button) findViewById(R.id.btn_hard);
-        btn_h.setOnClickListener(this);
+        btn_h.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LevelActivity.this, QuestionActivity.class);
+                if (mode == 2) {
+                    QuizDBOpenHelper.setSize(500);
+                }else{
+                    QuizDBOpenHelper.setSize(20);
+                }
+                QuestionActivity.setLevel(3);
+                soundPool.play(soundID, vol, vol, 0, 0, 0);
+                startActivity(intent);
+            }
+        });
     }
 
-
-    @Override
-    public void onClick(View v) {
-        mode = sf.getInt("mode",0);
-        if(mode == 1 || mode == 0) {
-            QuizDBOpenHelper.setSize(20);
-            Intent intent = new Intent(this, QuestionActivity.class);
-            switch (v.getId()) {
-                case R.id.btn_easy:
-                    soundPool.play(soundID, vol, vol, 0, 0, 0);
-                    QuestionActivity.setLevel(1);
-                    break;
-                case R.id.btn_medium:
-                    soundPool.play(soundID, vol, vol, 0, 0, 0);
-                    QuestionActivity.setLevel(2);
-                    break;
-                case R.id.btn_hard:
-                    soundPool.play(soundID, vol, vol, 0, 0, 0);
-                    QuestionActivity.setLevel(3);
-                    break;
-                default:
-                    break;
-            }
-            startActivity(intent);
-        }
-        if(mode == 2){
-            QuizDBOpenHelper.setSize(500);
-            Intent intent = new Intent(this, QuestionActivity.class);
-            switch (v.getId()) {
-                case R.id.btn_easy:
-                    soundPool.play(soundID, vol, vol, 0, 0, 0);
-                    QuestionActivity.setLevel(1);
-                    break;
-                case R.id.btn_medium:
-                    soundPool.play(soundID, vol, vol, 0, 0, 0);
-                    QuestionActivity.setLevel(2);
-                    break;
-                case R.id.btn_hard:
-                    soundPool.play(soundID, vol, vol, 0, 0, 0);
-                    QuestionActivity.setLevel(3);
-                    break;
-                default:
-                    break;
-            }
-            startActivity(intent);
-        }
-    }
     public void voice(View o) {
         vol = sf.getInt("effect", 1);
         soundPool.play(soundID, vol, vol, 0, 0, 0);
@@ -97,4 +92,7 @@ public class LevelActivity extends Activity implements View.OnClickListener {
         startActivity(intent);
     }
 
+    @Override
+    public void onClick(View v) {
+    }
 }
