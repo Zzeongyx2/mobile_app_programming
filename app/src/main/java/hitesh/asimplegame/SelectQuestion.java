@@ -36,7 +36,6 @@ public class SelectQuestion extends Activity {
         //setting
         sf = getSharedPreferences("settings", MODE_PRIVATE);
         vol = sf.getInt("effect", 1);//초기
-        Toast.makeText(getApplicationContext(), "vol : " + vol, Toast.LENGTH_SHORT).show();
         soundPool = new SoundPool.Builder().build();
         soundID = soundPool.load(this, R.raw.button, 1);
         btnLogOut = (Button) findViewById(R.id.btn_logout);
