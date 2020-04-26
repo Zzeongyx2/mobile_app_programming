@@ -356,6 +356,6 @@ public class QuizDBOpenHelper extends SQLiteOpenHelper {
 //        db.close();
         String clearDB = "DELETE FROM " + TABLE_QUEST;
         db.execSQL(clearDB);
-        Log.d(TAG, "==========================clear table");
+                Log.d(TAG, "==========================clear table");
     }
 }
